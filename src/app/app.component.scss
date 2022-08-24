@@ -1,0 +1,120 @@
+.search {
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+
+
+  input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
+
+    &:focus {
+      box-shadow: none;
+      border: 2px solid blue;
+    }
+  }
+
+  .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px;
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue;
+  }
+}
+
+
+
+.card {
+  border: 0;
+
+  .card__image {
+    cursor: zoom-in;
+    object-fit: cover;
+    height: 250px;
+    box-shadow: 0px 0px 15px rgba(33, 33, 33, .4);
+    transition: all 200ms ease;
+
+    &:hover {
+      box-shadow: 0px 0px 15px rgba(33, 33, 33, .4);
+      transform: scale(1.03);
+    }
+  }
+}
+
+
+
+
+.lightbox-container {
+  position: relative;
+  display: inline-block;
+  padding: 25px;
+
+
+  .lightbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .85);
+
+    .lightbox__close-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: #fff;
+      border: 0;
+      outline: 0;
+      z-index: 2;
+      background: gray;
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      .fa-times {
+        font-size: 25px;
+      }
+    }
+
+    .lightbox__img {
+      width: 100%;
+      height: 50vw;
+      border-radius: 20px;
+    }
+
+    .lightbox__info {
+      position: absolute;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+  }
+}
+
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
