@@ -1,0 +1,89 @@
+<div class="m-0 p-0 w-100 row justify-content-center">
+
+  <!------------------------ Start header ----------------------->
+  <header class="container-fluid row justify-content-center mb-5 pt-4">
+    <div class="container">
+      <div class="row d-flex justify-content-center align-items-center text-center">
+      
+        <h1 class="p-5">{{title | titlecase}}</h1>
+      
+        <div class="col-md-8">
+          <form #searchForm="ngForm" class="search" (ngSubmit)="search()">
+            <i class="fa fa-search"></i>
+            <input 
+              type="text" 
+              name="search" 
+              class="form-control" 
+              minlength="2"
+              placeholder="Search..." 
+              [(ngModel)]="keyword">
+            <button type="submit" class="btn btn-primary" [disabled]="searchForm.invalid">Search</button>
+          </form>
+          <p *ngIf="searchForm.dirty && searchForm.invalid">Must be more than 2 characters</p>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!------------------------ End header ----------------------->
+
+
+
+
+  <!------------------------ Start api error message ----------------------->
+  <div *ngIf="errorMessage" class="p-0 m-0 w-100 justify-content-center text-center">
+    <p>{{errorMessage}}</p>
+  </div>
+  <!------------------------ End api error message ----------------------->
+
+
+
+  <!------------------------ Start gallery  ----------------------->
+  <main class="row justify-content-center">
+    <div class="w-100 row justify-content-center align-items-start m-0 p-0" 
+      infinite-scroll
+      [infiniteScrollDistance]="infiniteScrollDistance" 
+      [infiniteScrollThrottle]="infiniteScrollThrottle"
+      (scrolled)="onScroll()">
+      <div class="row col-11 m-0 p-0 justify-content-start">
+        <div class="card m-0 p-2 col-12 col-sm-6 col-lg-4 col-xl-3" 
+          *ngFor="let photo of photos; 
+          let i=index" (click)="openLightBox(i)">
+          <div class="h-100 w-100 row m-0 p-0 justify-content-center">
+            <img class="card__image skeleton p-0" [src]="photo?.url" [alt]="photo?.title">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!------------------------ Start Spinner  ----------------------->
+    <div *ngIf="isLoading" class="w-100 py-5">
+      <app-spinner></app-spinner>
+    </div>
+    <!------------------------ End Spinner  ----------------------->
+
+  </main>
+  <!------------------------ End gallery  ----------------------->
+
+
+
+  <!------------------------ Start light-box  ----------------------->
+  <div *ngIf="openPreview" class="lightbox-container">
+    <div class="lightbox">
+
+      <button class="lightbox__close-btn m-3" (click)="closeLightBox()"><i class="far fa-times"></i> </button>
+
+      <div [@show]="{value: 'visible'}">
+        <img class="lightbox__img" [src]="currentPhoto?.url" [alt]="currentPhoto?.title">
+
+        <div class="lightbox__info col-12 px-5 py-3">
+          <p>Photo Title: {{currentPhoto?.title | titlecase}}</p>
+          <p>Owner Name: {{currentPhoto?.ownername | titlecase}}</p>
+          <p>Date Upload: {{currentPhoto?.dateupload | date}}</p>
+          <p>Date Taken: {{currentPhoto?.datetaken}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!------------------------ End light-box  ----------------------->
+</div>
