@@ -27,8 +27,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Getting Started
 
 1. Clone this repo locally into the location of your choice.
-1. Open a terminal and navigate to the root of the repo
-1. follow the instructions in the installation step
+2. Open a terminal and navigate to the root of the repo
+3. follow the instructions in the installation step
 
 
 ### Dependencies
